@@ -1,10 +1,13 @@
 package org.nypl.journalsystem;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Journal {
 	private String name;
 	private Publisher publisher;
 	private String ISSN;
-	private List<Articles> articles = new ArrayList<Articles>();
+	private List<Article> articles = new ArrayList<Article>();
 	
 	Journal(String name, Publisher publisher, String ISSN){
 		this.name = name;
@@ -19,7 +22,7 @@ public class Journal {
 		output += "publisher: " + publisher + "\n";
 		output += "ISSN: " + ISSN + "\n";
 		output += "Articles in this journal: \n\t";
-		for (Articel article: articles) {
+		for (Article article: articles) {
 			output += article.toString();
 			output += "\t";
 		}
