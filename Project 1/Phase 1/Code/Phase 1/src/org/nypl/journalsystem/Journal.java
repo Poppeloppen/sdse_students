@@ -1,12 +1,12 @@
 package org.nypl.journalsystem;
 
-public class JournalRecord {
+public class Journal {
 	private String name;
 	private Publisher publisher;
 	private String ISSN;
 	private List<Articles> articles = new ArrayList<Articles>();
 	
-	JournalRecord(String name, Publisher publisher, String ISSN){
+	Journal(String name, Publisher publisher, String ISSN){
 		this.name = name;
 		this.publisher = publisher;
 		this.ISSN = ISSN;
