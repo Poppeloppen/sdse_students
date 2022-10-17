@@ -11,6 +11,20 @@ public class Article {
 		this.authors = authors;
 	}
 	
+	
+	
+	public List<String> getAuthors() {
+		return authors;
+	}
+
+
+
+	public void putAuthors(String author) {
+		this.authors.add(author);
+	}
+
+
+
 	@Override
 	public String toString() {
 		String output = "title: " + title + "\n";
