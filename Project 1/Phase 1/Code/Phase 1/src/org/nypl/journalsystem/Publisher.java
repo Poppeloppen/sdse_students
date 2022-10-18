@@ -1,17 +1,17 @@
 package org.nypl.journalsystem;
 
 public class Publisher {
-	String PublisherName;
+	String publisherName;
 	String location;
 	
 	Publisher(String name, String location){
-		this.PublisherName = name;
+		this.publisherName = name;
 		this.location = location;
 	}
 	
 	
 	@Override
 	public String toString() {
-		return "name: " + PublisherName + ", location: "+ location;
+		return "name: " + publisherName + ", location: "+ location;
 	}
 }
