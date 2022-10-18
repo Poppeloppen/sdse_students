@@ -7,7 +7,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Reader;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.csv.CSVFormat;
@@ -15,12 +17,17 @@ import org.apache.commons.csv.CSVRecord;
 
 public class LibrarySystem {
 	
-	//Map<String, Journal> journals = new HashMap<>();
-	Map<Integer, String> IDAuthorMap = new HashMap<Integer, String>();
+	List<Journal> journals;
+	Map<Integer, String> IDAuthorMap;
+	
+	
 	
 	public LibrarySystem() {
-		
 		//TODO: Initialize system with default journals.
+		journals = new ArrayList<Journal>();
+		IDAuthorMap = new HashMap<Integer, String>();
+		journals.add(new Journal("Higher Education", "Springer", "Germany", "0018-1560"));
+		
 	}
 	
 	public void load() throws FileNotFoundException, IOException {
@@ -41,12 +48,12 @@ public class LibrarySystem {
 		for (CSVRecord record : records) {
 			String id = record.get("ID");
 			String name = record.get("Name");
-			//System.out.println("id: " + id + ", name: " + name);
 			
 			this.IDAuthorMap.put(Integer.parseInt(id), name);
 		}
 		
-		System.out.println(IDAuthorMap);
+		//System.out.println(IDAuthorMap);
+		System.out.println(journals.get(0));
 	}
 	
 	protected void loadArticles() throws FileNotFoundException, IOException {

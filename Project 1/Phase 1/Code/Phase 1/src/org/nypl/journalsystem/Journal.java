@@ -5,14 +5,17 @@ import java.util.List;
 
 public class Journal {
 	private String name;
-	private Publisher publisher;
+	private String publisher;
+	private String location;
 	private String ISSN;
-	private List<Article> articles = new ArrayList<Article>();
+	private List<Article> articles;
 	
-	Journal(String name, Publisher publisher, String ISSN){
+	Journal(String name, String publisher, String location, String ISSN){
 		this.name = name;
 		this.publisher = publisher;
+		this.location = location;
 		this.ISSN = ISSN;
+		this.articles = new ArrayList<Article>();
 	}
 	
 	
@@ -20,6 +23,7 @@ public class Journal {
 	public String toString() {
 		String output = "name: " + name + "\n";
 		output += "publisher: " + publisher + "\n";
+		output += "location: " + location + "\n";
 		output += "ISSN: " + ISSN + "\n";
 		output += "Articles in this journal: \n\t";
 		for (Article article: articles) {
