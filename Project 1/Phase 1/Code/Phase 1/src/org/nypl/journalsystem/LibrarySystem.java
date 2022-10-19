@@ -40,9 +40,9 @@ public class LibrarySystem {
 		Reader in = new FileReader("data/Authors.csv");
 		
 		Iterable<CSVRecord> records = CSVFormat.TDF
-												.withFirstRecordAsHeader()
-												.withDelimiter(',')
-												.parse(in);
+				.withFirstRecordAsHeader()
+				.withDelimiter(',')
+				.parse(in);
 		
 		for (CSVRecord record : records) {
 			String authorID = record.get("ID");
@@ -58,9 +58,9 @@ public class LibrarySystem {
 		Reader in = new FileReader("data/Articles.csv");
 		
 		Iterable<CSVRecord> articleRecords = CSVFormat.TDF
-												.withFirstRecordAsHeader()
-												.withDelimiter(',')
-												.parse(in);
+				.withFirstRecordAsHeader()
+				.withDelimiter(',')
+				.parse(in);
 		
 		for (CSVRecord record : articleRecords) {
 			//String articleID = record.get("ID");
