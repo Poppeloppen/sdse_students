@@ -20,8 +20,6 @@ public class LibrarySystem {
 	Map<String, Journal> journals;
 	Map<Integer, String> IDAuthorMap;
 	
-	
-	
 	public LibrarySystem() {
 		//Initialize system with default journals.
 		journals = new HashMap<String, Journal>();
@@ -53,16 +51,10 @@ public class LibrarySystem {
 			this.IDAuthorMap.put(Integer.parseInt(authorID), name);
 			
 		}
-		
-		//System.out.println(IDAuthorMap);
-		//System.out.println(journals.get("0018-1560"));
 	}
 	
 	protected void loadArticles() throws FileNotFoundException, IOException {
-		/*File file = new File("data/Articles.csv");
-		*/
-		
-		//TODO: Load articles from file and assign them to appropriate journal
+		//Load articles from file and assign them to appropriate journal
 		Reader in = new FileReader("data/Articles.csv");
 		
 		Iterable<CSVRecord> articleRecords = CSVFormat.TDF
@@ -100,19 +92,19 @@ public class LibrarySystem {
 	
 	
 	public void listContents() {
-		//TODO: Print all journals with their respective articles and authors to the console.
-		System.out.println(this.journals);
+		//Print all journals with their respective articles and authors to the console.
+		for (Journal journal : this.journals.values()) {
+			System.out.println("--".repeat(20));
+			if (!journal.fullIssue()) {
+				System.out.println("WARNING, NOT FULL ISSUE");
+			}
+			System.out.println(journal);
+		}
 	}
+	
 	
 	public static final void main(String[] args) throws Exception {
 		LibrarySystem librarySystem = new LibrarySystem();
-		
-		/* 
-		 * my stuff
-		 */
-		//librarySystem.loadAuthors();
-		//librarySystem.loadArticles();
-		
 		
 		librarySystem.load();
 		librarySystem.listContents();

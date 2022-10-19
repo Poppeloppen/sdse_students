@@ -22,6 +22,10 @@ public class Journal {
 		this.articles.add(article);
 	}
 	
+	public boolean fullIssue() {
+		return this.articles.size() >= 3;
+	}
+	
 	@Override
 	public String toString() {
 		String output = "Journal name: " + name + "\n";

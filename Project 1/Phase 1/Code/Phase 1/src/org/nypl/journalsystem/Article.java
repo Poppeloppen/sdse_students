@@ -28,9 +28,9 @@ public class Article {
 	@Override
 	public String toString() {
 		String output = "Title: " + title + "\n\t";
-		output += "Authors: \n\t";
+		output += "Authors: \n";
 		for (String author: authors) {
-			output += "\t" + author + "\n"; 
+			output += "\t\t" + author + "\n"; 
 		}
 		return output;
 	}
