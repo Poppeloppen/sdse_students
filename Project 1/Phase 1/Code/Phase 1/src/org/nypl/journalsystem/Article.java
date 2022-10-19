@@ -27,10 +27,10 @@ public class Article {
 
 	@Override
 	public String toString() {
-		String output = "title: " + title + "\n";
-		output += "Authors of article: \n";
+		String output = "Title: " + title + "\n\t";
+		output += "Authors: \n\t";
 		for (String author: authors) {
-			output += "\t " + author + "\n"; 
+			output += "\t" + author + "\n"; 
 		}
 		return output;
 	}

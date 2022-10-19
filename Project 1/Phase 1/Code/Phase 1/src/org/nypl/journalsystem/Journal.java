@@ -18,10 +18,13 @@ public class Journal {
 		this.articles = new ArrayList<Article>();
 	}
 	
+	public void putArticle(Article article) {
+		this.articles.add(article);
+	}
 	
 	@Override
 	public String toString() {
-		String output = "name: " + name + "\n";
+		String output = "Journal name: " + name + "\n";
 		output += "publisher: " + publisher + "\n";
 		output += "location: " + location + "\n";
 		output += "ISSN: " + ISSN + "\n";

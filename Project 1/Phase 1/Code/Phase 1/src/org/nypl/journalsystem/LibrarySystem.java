@@ -1,13 +1,13 @@
 package org.nypl.journalsystem;
 
 
-
 import java.io.FileReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,8 +39,6 @@ public class LibrarySystem {
 	}
 	
 	protected void loadAuthors() throws FileNotFoundException, IOException {
-		//File file = new File("data/Authors.csv");
-
 		Reader in = new FileReader("data/Authors.csv");
 		
 		Iterable<CSVRecord> records = CSVFormat.TDF
@@ -49,10 +47,11 @@ public class LibrarySystem {
 												.parse(in);
 		
 		for (CSVRecord record : records) {
-			String id = record.get("ID");
+			String authorID = record.get("ID");
 			String name = record.get("Name");
 			
-			this.IDAuthorMap.put(Integer.parseInt(id), name);
+			this.IDAuthorMap.put(Integer.parseInt(authorID), name);
+			
 		}
 		
 		//System.out.println(IDAuthorMap);
@@ -60,21 +59,62 @@ public class LibrarySystem {
 	}
 	
 	protected void loadArticles() throws FileNotFoundException, IOException {
-		File file = new File("data/Articles.csv");
-
+		/*File file = new File("data/Articles.csv");
+		*/
+		
 		//TODO: Load articles from file and assign them to appropriate journal
+		Reader in = new FileReader("data/Articles.csv");
+		
+		Iterable<CSVRecord> articleRecords = CSVFormat.TDF
+												.withFirstRecordAsHeader()
+												.withDelimiter(',')
+												.parse(in);
+		
+		for (CSVRecord record : articleRecords) {
+			//String articleID = record.get("ID");
+			String title = record.get("Title");
+			String stringAuthorIDs = record.get("AuthorIDs");
+			String issn = record.get("ISSN");
+			
+			//Get rid of square brackets and spaces in the string of AuthorIDs
+			String cleanStringAuthorIDs = stringAuthorIDs.replaceAll("^\\[|]$|[\" \"]", "");
+			//Convert the cleaned string of authorIDs to an arraylist
+			List<String> authorIDs = new ArrayList<String>(Arrays.asList(cleanStringAuthorIDs.split(";")));
+			
+			List<String> authors = new ArrayList<String>();
+			for (String authorID : authorIDs) {
+				int authID = Integer.parseInt(authorID);
+				String authorName = this.IDAuthorMap.get(authID);
+				authors.add(authorName);
+			}
+			
+			
+			Article article = new Article(title, authors);
+			if (journals.containsKey(issn)) {
+				this.journals.get(issn).putArticle(article);
+			}
+			
+		}
+
 	}
 	
 	
 	public void listContents() {
 		//TODO: Print all journals with their respective articles and authors to the console.
+		System.out.println(this.journals);
 	}
 	
 	public static final void main(String[] args) throws Exception {
 		LibrarySystem librarySystem = new LibrarySystem();
 		
-		librarySystem.loadAuthors();
-		//librarySystem.load();
-		//librarySystem.listContents();
+		/* 
+		 * my stuff
+		 */
+		//librarySystem.loadAuthors();
+		//librarySystem.loadArticles();
+		
+		
+		librarySystem.load();
+		librarySystem.listContents();
 	}
 }
